@@ -1,0 +1,35 @@
+#!/usr/bin/env perl
+
+my %config = (
+	"1" => {
+		"dir" => "expression",
+		"opt" => "2>/dev/null || echo Not supported"
+	},
+	"2" => {
+		"dir" => "search",
+		"opt" => "-ea -jar BinarySearchTest.jar Span",
+	},
+	"3" => {
+		"dir" => "queue",
+		"opt" => "-ea --add-opens java.base/java.util=ALL-UNNAMED -jar ArrayQueueTest.jar DequeIndexed",
+	},
+	"4" => {
+		"dir" => "queue",
+		"opt" => "-ea -jar QueueTest.jar Nth",
+	},
+	"5" => {
+        "dir" => "expression",
+        "opt" => "-ea -jar _.jar Base",
+	},
+);
+
+sub test {
+	my $info = shift;
+	my $dir = $info->{"dir"};
+	my $opt = $info->{"opt"};
+	system("javac $dir/*.java");
+	system("java $opt");
+}
+
+my $hw_id = shift; #ARGV[0]
+test($config{$hw_id});
