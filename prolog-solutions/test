@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+function test {
+    cp "./$1" "../prolog/$1"
+    cd ../prolog || { echo "Failure"; exit 1; }
+    ./TestProlog.sh prtest."$2"Test "$3" "$4"
+    rm "$1"
+}
+
+h=$1
+if [ "$h" == '' ]; then h=3; fi
+
+case "$h" in
+    1) test primes.pl primes.Primes hard Divisors ;;
+    2) test tree-map.pl tree.Tree hard PutCeiling ;;
+    3) test expression.pl parsing.Parser infix VarImplIff ;;
+esac
