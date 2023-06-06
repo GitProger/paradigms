@@ -1,0 +1,33 @@
+# Do not store hidden files and directories, including .idea project
+.*
+
+# Do not store anything starting with _
+_*
+
+# Do not store .class files
+*.class
+
+# Store .git files
+!.git*
+
+
+# kg files
+*/src/base/*
+*Tester.java
+*Test.java
+
+common/
+base/
+*TestSet.java
+
+javascript/
+java/
+clojure/
+prolog/
+artifacts/
+
+###
+.idea/
+*.iml
+*.jar
+out/
